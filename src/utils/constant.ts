@@ -1,8 +1,13 @@
 /**
  * Keep track of the common parameters for an endpoint.
- */
+ */ 
 
-export const BASE_URL: string = 'https://docsndata-zapier.herokuapp.com/v1/';
+type BaseURL = string;
+
+const NGROK_URL: BaseURL = 'https://97e7-102-89-43-124.ngrok.io'; // local test
+const HEROKU_URL: BaseURL = 'https://docsndata-zapier.herokuapp.com';
+
+export const BASE_URL: string = `${NGROK_URL}/api/v1`;
 
 export enum Endpoint {
     Auth = 'auth',

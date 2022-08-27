@@ -1,21 +1,25 @@
 import { Bundle, ZObject } from 'zapier-platform-core';
-import { 
-  BASE_URL, 
-  Endpoint, 
-  MODEL_PROPERTY_SCHEMA,
-  MODEL_SAMPLE } from '../utils';
+import { BASE_URL, MODEL_SAMPLE } from '../utils';
+
+  type AnyObject = {[x: string]: any;}
+
+  // re-construct inputData
+  const constructPayloadFromInput = (input: AnyObject, z: ZObject) => {
+    return input
+  }
 
 // You can optionally add add the shape of the inputData in bundle, which will pass that
 // info down into the function and tests
-const perform = async (
+const createRecord = async (
   z: ZObject,
-  bundle: Bundle<{ project_id: string }>
+  bundle: Bundle
 ) => {
-  const modelURL = new URL([bundle.inputData.project_id, Endpoint.Models].join('/'), BASE_URL)
-
+  const modelURL = new URL(`${BASE_URL}/model/${bundle.inputData.project_id}/record`);
   const response = await z.request({
-    method: 'POST',
+    method: 'PUT',
     url: modelURL.toString(),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(constructPayloadFromInput(bundle.inputData, z))
   });
   return response.data;
 };
@@ -30,7 +34,7 @@ export default {
   },
 
   operation: {
-    perform,
+    perform: createRecord,
     inputFields: [
       // load all models from the API and add them as options to the dropdown
       {
@@ -42,17 +46,12 @@ export default {
         helpText: 'Select a project to create a record in.',
       },
       async function (z: ZObject, bundle: Bundle) {
-        /*
-        const schemaURL = new URL([bundle.inputData.project_id, Endpoint.Schema].join('/'), BASE_URL)
-
+        const schemaURL = new URL(`${BASE_URL}/model/${bundle.inputData.project_id}/schema`);
         const response = await z.request({
           method: 'GET',
           url: schemaURL.toString(),
         });
-        return response.data;
-      */
-
-        return Promise.resolve(MODEL_PROPERTY_SCHEMA)
+        return response.data.data;
       }
     ],
     sample: MODEL_SAMPLE,

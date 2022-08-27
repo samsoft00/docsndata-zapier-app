@@ -1,16 +1,11 @@
 import { Bundle, ZObject } from 'zapier-platform-core';
+import { BASE_URL } from '../utils';
 
 const getModels = async (z: ZObject, bundle: Bundle) => {
-    /*
-  const response = await z.request(
-    'https://auth-json-server.zapier-staging.com/movies'
-  );
-  return response.data;
-    */
-  return Promise.resolve([
-    { id: 123, name: 'Customer' },
-    { id: 124, name: 'Order' }
-  ])
+  const response = await z.request(`${BASE_URL}/model`);
+  
+  const { data } = response.data
+  return Object.keys(data).map(k => ({ id: data[k].id, name: data[k].name }))
 };
 
 export default {
@@ -27,7 +22,7 @@ export default {
     perform: getModels,
     sample: {
       id: '1',
-      title: 'example',
+      name: 'Customer',
     },
   },
 };
