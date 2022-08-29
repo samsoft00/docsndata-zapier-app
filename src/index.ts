@@ -43,6 +43,7 @@ export default {
   platformVersion,
   authentication,
 
+  // middleware
   beforeRequest: [addApiKeyToHeader],
   afterResponse: [handleHTTPError],
 

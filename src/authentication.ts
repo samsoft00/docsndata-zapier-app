@@ -1,18 +1,21 @@
 import { Bundle, ZObject } from "zapier-platform-core"
 import { BASE_URL } from "./utils"
 
-const testAuth = (z: ZObject, bundle: Bundle) => {
+const testAuth = async (z: ZObject, bundle: Bundle) => {
   
-  const promise = z.request(`${BASE_URL}/user`)
-  return promise.then(response => {
-    if (response.status !== 200) {
-      throw new Error('Invalid API Key')
-    }
-  })
+  const request = await z.request(`${BASE_URL}/user`)
+  if (![200, 201].includes(request.status)) {
+    throw new Error('Invalid Team ID or API Key')
+  }
+
+  return request.data.data
 }
 
 const getConnectionLabel = (z: ZObject, bundle: Bundle) => {
-  return `- ${bundle.authData.username}`;
+  // extract team information from bundle
+  const { team } = bundle.inputData
+  if (team) return `${team.name}`
+  return `${bundle.authData.username}`;
 }
 
 export default {

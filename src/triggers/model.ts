@@ -24,7 +24,7 @@ export default {
 
   display: {
     label: 'New Record',
-    description: 'Triggers when a new record is created.',
+    description: 'Triggers when a new record is created or updated.',
   },
 
   operation: {
