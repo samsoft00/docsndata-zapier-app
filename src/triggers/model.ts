@@ -19,12 +19,12 @@ const findRecord = async (z: ZObject, bundle: Bundle) => {
 };
 
 export default {
-  key: 'newRecord',
-  noun: 'New Record',
+  key: 'modelEvent',
+  noun: 'Model Event',
 
   display: {
-    label: 'New Record',
-    description: 'Triggers when a new record is created or updated.',
+    label: 'Model Event',
+    description: 'When event you have configure for a model is triggered.',
   },
 
   operation: {
