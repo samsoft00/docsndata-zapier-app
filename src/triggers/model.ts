@@ -19,8 +19,8 @@ const findRecord = async (z: ZObject, bundle: Bundle) => {
 };
 
 export default {
-  key: 'modelEvent',
-  noun: 'Model Event',
+  key: 'newRecord',
+  noun: 'New Record',
 
   display: {
     label: 'Model Event',
