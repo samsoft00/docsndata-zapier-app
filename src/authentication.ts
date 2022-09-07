@@ -13,7 +13,7 @@ const testAuth = async (z: ZObject, bundle: Bundle) => {
 
 const getConnectionLabel = (z: ZObject, bundle: Bundle) => {
   // extract team information from bundle
-  const { team } = bundle.inputData
+  const team = bundle.inputData
   if (team) return `${team.name}`
   return `${bundle.authData.username}`;
 }
