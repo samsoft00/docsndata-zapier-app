@@ -4,7 +4,7 @@ import { BASE_URL } from '../utils';
 const getModelEvents = async (z: ZObject, bundle: Bundle) => {
     
   const response = await z.request(
-    `${BASE_URL}/model/${bundle.inputData.project_id}/events`
+    `${BASE_URL}/model/${bundle.inputData.projectId}/events`
   );
   
   const { data } = response.data

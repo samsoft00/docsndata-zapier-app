@@ -2,10 +2,10 @@ import { Bundle, ZObject } from 'zapier-platform-core';
 import { BASE_URL, MODEL_SAMPLE as sample } from '../utils'
 
 const findRecord = async (z: ZObject, bundle: Bundle) => {
-  // main endpoint -> fine record that is related to project_id (modelID) && event_id (eventID)
+  // main endpoint -> fine record that is related to projectId (modelID) && eventId (eventID)
   const {
-    project_id: projectID, 
-    event_id: eventID
+    projectId: projectID, 
+    eventId: eventID
   } = bundle.inputData;
 
   const recordURL = new URL(`${BASE_URL}/model/${projectID}/event/${eventID}/records`);
@@ -31,7 +31,7 @@ export default {
     inputFields: [
       // Select model
       {
-        key: 'project_id',
+        key: 'projectId',
         required: true,
         label: 'Base Model',
         dynamic: 'project.id.name',
@@ -40,7 +40,7 @@ export default {
       },
       // Select docsndata models event
       {
-        key: 'event_id',
+        key: 'eventId',
         required: true,
         label: 'Event',
         dynamic: 'event.id.name', //come back to this later
