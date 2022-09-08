@@ -13,8 +13,9 @@ export interface DnDModelSchema {
 }
 
 // re-construct inputData
-const constructPayloadFromInput = (input: Omit<AnyObject, 'project_id'>, z: ZObject) => {
-  return input
+const constructPayloadFromInput = (input: Omit<AnyObject, 'projectId'>, z: ZObject) => {
+  const { projectId, ...data} =  input
+  return data
 }
 
 // You can optionally add add the shape of the inputData in bundle, which will pass that
@@ -69,7 +70,7 @@ export default {
             label: n.label,
             ...( n.type && { type: n.type.toLowerCase() }),
             ...( n.required && { required: n.required }),
-            ...( n.unique && { required: true, helpText: `${n.key} field must be unique and required.` }),
+            ...( n.unique && { required: true, helpText: `${n.label} field must be unique.` }),
           }))
 
           return schemas
