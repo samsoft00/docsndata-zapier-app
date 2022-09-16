@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core';
-import { BASE_URL, MODEL_SAMPLE } from '../utils';
+import { BASE_URL, CUSTOMER_SAMPLE as sample } from '../utils';
 
 type AnyObject = {[x: string]: any;}
 
@@ -31,6 +31,7 @@ const createRecord = async (
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(constructPayloadFromInput(bundle.inputData, z))
   });
+
   return response.data;
 };
 
@@ -79,6 +80,6 @@ export default {
         return []
       }
     ],
-    sample: MODEL_SAMPLE,
+    sample
   },
 };

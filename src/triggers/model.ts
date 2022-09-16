@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core';
-import { BASE_URL, MODEL_SAMPLE as sample } from '../utils'
+import { BASE_URL, CUSTOMER_SAMPLE as sample } from '../utils'
 
 const findRecord = async (z: ZObject, bundle: Bundle) => {
   // main endpoint -> fine record that is related to projectId (modelID) && eventId (eventID)
@@ -24,7 +24,7 @@ export default {
 
   display: {
     label: 'Model Event',
-    description: 'When event you have configure for a model is triggered.',
+    description: 'Triggers when event you have configure for a model is triggered.',
   },
 
   operation: {
