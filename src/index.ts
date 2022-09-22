@@ -6,9 +6,7 @@ import {
 import authentication from './authentication'
 
 import ModelCreate from './creates/model';
-import ModelTrigger from './triggers/model';
 import FetchModelTrigger from './triggers/fetch.model';
-import FetchEventTrigger from './triggers/fetch.event'
 
 import { version as platformVersion } from 'zapier-platform-core';
 const { version } = require('../package.json');
@@ -48,9 +46,7 @@ export default {
   afterResponse: [handleHTTPError],
 
   triggers: {
-    [ModelTrigger.key]: ModelTrigger,
     [FetchModelTrigger.key]: FetchModelTrigger,
-    [FetchEventTrigger.key]: FetchEventTrigger,
   },
 
   creates: {
