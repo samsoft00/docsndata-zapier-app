@@ -25,6 +25,7 @@ export default {
   display: {
     label: 'Model Event',
     description: 'Triggers when event you have configure for a model is triggered.',
+    hidden: true,
   },
 
   operation: {
